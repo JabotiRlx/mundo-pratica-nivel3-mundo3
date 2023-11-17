@@ -88,7 +88,7 @@ SET @NextValue = NEXT VALUE FOR LOJA_SEQUENCE
            ,[email])
      VALUES
            (
-		   (@NextValue
+		   @NextValue
 		   ,'JJC'
 		   ,'Rua 11, Centro'
 		   ,'Riacho do Norte'
