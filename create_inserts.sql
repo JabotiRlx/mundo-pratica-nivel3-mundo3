@@ -49,62 +49,7 @@ AS INT
 START WITH 1
 INCREMENT BY 1;
 
-  DECLARE @NextValue INT = NEXT VALUE FOR LOJA_SEQUENCE
-
-  INSERT INTO [dbo].[Pessoa]
-           (idPessoa
-		   ,nome
-           ,[logradouro]
-           ,[cidade]
-           ,[estado]
-           ,[telefone]
-           ,[email])
-     VALUES
-           (
-		   @NextValue
-		   ,'Joao'
-           ,'Rua 12, Casa 3,Quitanda'
-           ,'Riacho do Sul'
-           ,'PA'
-           ,'1111-1111'
-           ,'joao@riacho.com'
-		   )
-
-	INSERT INTO [dbo].[PessoaFisica]
-           ([Pessoa_idPessoa]
-           ,[CPF])
-     VALUES
-           (@NextValue
-           ,111111111)	
-
-SET @NextValue = NEXT VALUE FOR LOJA_SEQUENCE
-  INSERT INTO [dbo].[Pessoa]
-           (idPessoa
-		   ,nome
-           ,[logradouro]
-           ,[cidade]
-           ,[estado]
-           ,[telefone]
-           ,[email])
-     VALUES
-           (
-		   @NextValue
-		   ,'JJC'
-		   ,'Rua 11, Centro'
-		   ,'Riacho do Norte'
-		   ,'PA'
-		   ,'1212-1212'
-		   ,'jjc@riacho.com' )
-		   	
-INSERT INTO [dbo].[PessoaJuridica]
-           ([Pessoa_idPessoa]
-           ,[CNPJ])
-     VALUES
-           ( @NextValue
-		   , 22222222222222)
-
-
-
+  
 INSERT INTO [dbo].[Produto]
            ([nome]
            ,[quantidade]
@@ -120,6 +65,60 @@ INSERT INTO [dbo].[Usuario]
            ( 'op1','op2')
 		   ,( 'op2','op2')
 
+DECLARE @NextValuePF INT = NEXT VALUE FOR LOJA_SEQUENCE
+
+  INSERT INTO [dbo].[Pessoa]
+           (idPessoa
+		   ,nome
+           ,[logradouro]
+           ,[cidade]
+           ,[estado]
+           ,[telefone]
+           ,[email])
+     VALUES
+           (
+		   @NextValuePF
+		   ,'Joao'
+           ,'Rua 12, Casa 3,Quitanda'
+           ,'Riacho do Sul'
+           ,'PA'
+           ,'1111-1111'
+           ,'joao@riacho.com'
+		   )
+
+	INSERT INTO [dbo].[PessoaFisica]
+           ([Pessoa_idPessoa]
+           ,[CPF])
+     VALUES
+           (@NextValuePF
+           ,111111111)	
+
+declare @NextValuePJ int = NEXT VALUE FOR LOJA_SEQUENCE
+  INSERT INTO [dbo].[Pessoa]
+           (idPessoa
+		   ,nome
+           ,[logradouro]
+           ,[cidade]
+           ,[estado]
+           ,[telefone]
+           ,[email])
+     VALUES           
+		   (@NextValuePJ
+		   ,'JJC'
+		   ,'Rua 11, Centro'
+		   ,'Riacho do Norte'
+		   ,'PA'
+		   ,'1212-1212'
+		   ,'jjc@riacho.com' )
+		   	
+INSERT INTO [dbo].[PessoaJuridica]
+           ([Pessoa_idPessoa]
+           ,[CNPJ])
+     VALUES
+           ( @NextValuePJ
+		   , 22222222222222)
+
+
 INSERT INTO [dbo].[Movimento]
            ([Usuario_idUsuario]
            ,[Pessoa_idPessoa]
@@ -128,8 +127,9 @@ INSERT INTO [dbo].[Movimento]
            ,[tipo]
            ,[valorUnitario])
      VALUES
-           (1,1,1,20,'S',4)
-		   ,(1,1,2,15,'S',2)
-		   ,(2,1,2,10,'S',3)
-		   ,(1,2,2,15,'E',5)
-		   ,(1,2,3,20,'E',4)
+           (1,@NextValuePF,1,20,'S',4)
+		   ,(1,@NextValuePF,2,15,'S',2)
+		   ,(2,@NextValuePF,2,10,'S',3)
+		   ,(1,@NextValuePJ,2,15,'E',5)
+		   ,(1,@NextValuePJ,3,20,'E',4)
+	
