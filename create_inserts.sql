@@ -34,13 +34,13 @@ CREATE TABLE Movimento (
 );
 
 CREATE TABLE PessoaFisica (
-  Pessoa_idPessoa INTEGER FOREIGN KEY REFERENCES Pessoa(idPessoa)  ,
+  Pessoa_idPessoa INTEGER FOREIGN KEY REFERENCES Pessoa(idPessoa) PRIMARY KEY ,
   CPF VARCHAR(30) NULL    ,
 );
 
 
 CREATE TABLE PessoaJuridica (
-  Pessoa_idPessoa INTEGER FOREIGN KEY REFERENCES Pessoa(idPessoa)  ,
+  Pessoa_idPessoa INTEGER FOREIGN KEY REFERENCES Pessoa(idPessoa) PRIMARY KEY ,
   CNPJ VARCHAR(30) NULL    ,
 );
 
